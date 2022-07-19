@@ -1,0 +1,8 @@
+Django==4.0.5
+python-decouple==3.6
+# Django Rest Framework
+djangorestframework==3.13.1
+markdown==3.3.7
+django-filter==22.1
+# Postgresql
+psycopg2==2.9.3

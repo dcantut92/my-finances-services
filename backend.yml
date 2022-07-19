@@ -1,0 +1,45 @@
+version: '3.3'
+services:
+  account:
+    container_name: account
+    restart: always
+    build:
+      context: ./www/account/
+      dockerfile: ./Dockerfile
+    image: my-finances/account:latest
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - './www/account:/app'
+    ports:
+      - "8001:8000"
+    expose:
+      - 8001
+    env_file:
+      - ./.envs/.local/.project
+    working_dir: /app/
+    networks:
+      - myfinances
+
+  administration:
+    container_name: administration
+    restart: always
+    build:
+      context: ./www/administration/
+      dockerfile: ./Dockerfile
+    image: my-finances/administration:latest
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - './www/administration:/app'
+    ports:
+      - "8002:8000"
+    expose:
+      - 8002
+    env_file:
+      - ./.envs/.local/.project
+    working_dir: /app/
+    networks:
+      - myfinances
+
+networks:
+  myfinances:
+
